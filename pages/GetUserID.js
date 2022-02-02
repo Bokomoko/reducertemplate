@@ -1,6 +1,6 @@
 import React from 'react';
-import MyContext from '../components/mycontext';
-import Reducer from '../components/reducer';
+import MyContext from '../components/MyContext';
+import Reducer from '../components/Reducer';
 
 export default function GetUserID() {
   const [state, dispatch] = React.useReducer(Reducer, {});

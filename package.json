@@ -8,7 +8,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mui/material": "^5.4.0",
+    "@types/needle": "^2.5.3",
     "axios": "^0.25.0",
+    "needle": "^3.0.0",
     "next": "12.0.9",
     "react": "17.0.2",
     "react-dom": "17.0.2"

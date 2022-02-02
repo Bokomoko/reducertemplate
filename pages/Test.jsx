@@ -2,8 +2,9 @@ import React from 'react';
 
 import MyContext from '../components/MyContext';
 import Reducer from '../components/Reducer';
+import MyButton from '../components/MyButton'
 
-export default function test() {
+export default function Test() {
   const [state, dispatch] = React.useReducer(Reducer, {
     clickedButton: 'None',
     counter: { 1: 0, 2: 0, 3: 0 },
@@ -20,11 +21,7 @@ export default function test() {
     myValues.push({ wcounter, quantos: state.counter[wcounter] });
   }
 
-  function myClikc(qualBotão) {
-    console.log('Inside myClikc');
-    dispatch({ type: 'CLICKED', payload: qualBotão });
-  }
-
+  
   return (
     <div>
       <MyContext.Provider value={{ state, dispatch }}>
@@ -34,15 +31,10 @@ export default function test() {
             The counter for {w.wcounter} is {w.quantos}
           </h3>
         ))}
-        <button type='button' onClick={() => myClikc(1)}>
-          1
-        </button>
-        <button type='button' onClick={() => myClikc(2)}>
-          2
-        </button>
-        <button type='button' onClick={() => myClikc(3)}>
-          3
-        </button>
+        <MyButton qualBotão={1} />
+        <MyButton qualBotão={2} />
+        <MyButton qualBotão={3} />
+        
       </MyContext.Provider>
     </div>
   );
