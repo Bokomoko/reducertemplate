@@ -30,7 +30,9 @@ export default function ListOfFollowers({ tweetUserList }: TweetUserListProps) {
     }
     setChecked(newChecked);
   };
-
+  if (tweetUserList.length <= 0) {
+    return <div>No Followers</div> 
+  }
   return (
     <List
       dense
