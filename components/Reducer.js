@@ -23,7 +23,7 @@ export default function Reducer(state, action) {
       return { ...state, userID : payload.userID };
     }
     case 'FETCHFOLLOWERS': {
-      return { ...state, userID: payload.userID};
+      return { ...state, listOfFollowers: payload.listOfFollowers};
     }
     default:
       console.log('It shouldn´t reach it here');

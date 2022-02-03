@@ -13,32 +13,32 @@ const initialState = {
 
 export default function GetUserID() {
   const [state, dispatch] = React.useReducer(Reducer, { initialState });
-  const [inputUserName, setInputUserName] = React.useState('');
+  const [localUserName, setLocalUserName] = React.useState('');
   const [localUserID, setLocalUserID] = React.useState('');
 
   const { userName, userID, listOfFollowers } = state;
 
   React.useEffect(() => {
     (async () => {
-      if (!userName) {
-        const localUserID = await fetchUserID(userName);
+      if (localUserName) {
+        const {userName, userID } = await fetchUserID(localUserName);
         setLocalUserID(localUserID);
-        dispatch({ type: 'CHANGEUSERID', payload: localUserID });
+        dispatch({ type: 'CHANGEUSERID', payload: {userName, userID }});
       }
     })();
-  }, [userName]);
+  }, [localUserName,localUserID]);
 
   React.useEffect(() => {
     (async () => {
-      if (!userID) {
-        const localFollowers = await fetchFollowers(userID);
+      if (localUserID) {
+        const localFollowers = await fetchFollowers(localUserID);
         dispatch({
           type: 'CHANGEUSERID',
           payload: { listOfFollowers: localFollowers },
         });
       }
     })();
-  }, [userID]);
+  }, [userID,localUserID]);
 
   return (
     <MyContext.Provider value={{ state, dispatch }}>
@@ -46,12 +46,12 @@ export default function GetUserID() {
         type='text'
         placeholder='Enter your Twitter user name'
         onInput={e => {
-          setInputUserName(e.target.value);
+          setLocalUserName(e.target.value);
         }}
       />
       <button
         onClick={e =>
-          dispatch({ type: 'SUBMITUSER', payload: { userName: inputUserName } })
+          dispatch({ type: 'SUBMITUSER', payload: { userName: localUserName } })
         }
       >
         Get userID
@@ -63,7 +63,7 @@ export default function GetUserID() {
       >
         Get followers
       </button>
-      {userID && <p>UserID is {userID} </p>}
+      {userID && <p>{userName} userID is {userID} </p>}
       {listOfFollowers && <ListOfFollowers tweetUserList={listOfFollowers} />}
     </MyContext.Provider>
   );
