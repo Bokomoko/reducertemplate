@@ -8,7 +8,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
     "@mui/material": "^5.4.0",
+    "@mui/types": "^7.1.0",
     "@types/needle": "^2.5.3",
     "axios": "^0.25.0",
     "needle": "^3.0.0",

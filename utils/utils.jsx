@@ -6,9 +6,9 @@ export async function fetchUserID(reqUserName) {
         'Content-Type': 'application/json',
       },
     });
-    const { data } = response.json();
-    console.log(`UserID is ${data}`);
-    return { userID: data };
+    const { userID } = await  response.json();
+    console.log(`UserID is ${userID}`);
+    return { userID };
   }
   
   export async function fetchFollowers(userID) {
