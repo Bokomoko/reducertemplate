@@ -14,12 +14,15 @@
     "@mui/types": "^7.1.0",
     "@types/needle": "^2.5.3",
     "axios": "^0.25.0",
+    "jsonwebtoken": "^8.5.1",
     "needle": "^3.0.0",
     "next": "12.0.9",
+    "next-auth": "^4.2.1",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^8.5.8",
     "@types/node": "^17.0.13",
     "@types/react": "^17.0.38",
     "eslint": "8.8.0",
