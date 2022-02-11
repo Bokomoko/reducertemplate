@@ -1,4 +1,12 @@
+import {fetchUserID} from '../utils/utils'
+
 export default function Reducer(state, action) {
+  const dispatch = (action )=> {
+    console.log("Acionou dentro do reducer a própria dispatch")
+    console.log({state,action})
+    const coisa = Reducer(state,action)
+    console.log(coisa)
+  } 
   const { type, payload } = action;
   switch (type) {
     case 'CLICKED': {
@@ -13,20 +21,30 @@ export default function Reducer(state, action) {
       console.log(`Modify button ${payload}`);
       return { ...state, clickedButton: payload };
     }
-    case 'SUBMITUSER': {
+    case 'GETUSERID': {
       console.log(`User name ${state.userName} submitted`);
-      console.log({payload})
-      return { ...state, userID : payload.userID };
+      const {userName} = {...state }
+      console.log(`Getting userID for userName ${userName}`)
+      fetchUserID(userName, dispatch)
+      return { ...state };
     }
-    case 'CHANGEUSERID': {
-      console.log(`User name ${state.userName} has userID = ${payload.userID}`);
-      return { ...state, userID : payload.userID };
+    case 'RECEIVEDUSERID': {
+      console.log(`Received userID ${payload} from API`)
+      return { ...state , userID:payload}
     }
-    case 'FETCHFOLLOWERS': {
-      return { ...state, userID: payload.userID};
+    case 'CHANGEUSERNAME': {
+      return { ...state, userName: payload };
+    }
+    case 'GETFOLLOWERS': {
+      console.log(`Getting followers for userID ${state.userID}`)
+      return { ...state};
+    }
+    case 'ERRORFETCHUSERID': {
+      console.log('O fetch do userID deu galho')
+      console.log(`Eis o state ${state}`)
     }
     default:
-      console.log('It shouldn´t reach it here');
+      console.log(`It shouldn´t reach it here. The action was ${action.type}`);
       return state;
   }
 }
